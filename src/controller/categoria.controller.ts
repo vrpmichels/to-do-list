@@ -4,8 +4,9 @@ import { CategoriaService } from '../service/categoria.service'
 class CategoriaController {
 
     async create(req: Request, res: Response) {
-        const tarefa = await new CategoriaService().create(req.body)
-        return res.json(tarefa)
+        const tarefa = await new CategoriaService().create(req.body);
+        res.status(201);
+        return res.json(tarefa);
     }
 
     async findById(req: Request, res: Response) {

@@ -1,14 +1,14 @@
 import { Status } from "../enum/status"
-import { Categoria } from "./categoria.interface"
-import { Usuario } from "./usuario.interface"
+import { CategoriaInterface } from "./categoria.interface"
+import { UsuarioInterface } from "./usuario.interface"
 
-export interface Tarefa {
+export interface TarefaInterface {
     title: string,
     descricao: string,
     data_criacao: Date,
     data_conclusao: Date,
     tipo: string,
-    categoria: Categoria,
+    categoria: CategoriaInterface,
     status: Status,
-    usuarioAssociado: Usuario
+    usuarioAssociado: UsuarioInterface
 }

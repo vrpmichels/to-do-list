@@ -1,4 +1,4 @@
-export interface Usuario{
+export interface UsuarioInterface{
 
     nome: string,
     peso: number,

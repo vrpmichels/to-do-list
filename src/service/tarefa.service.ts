@@ -1,10 +1,10 @@
 import TarefaModel from '../schemas/tarefa.schema'
 import CategoriaModel from '../schemas/categoria.schema'
-import { Tarefa } from '../schemas/interfaces/tarefa.interface';
+import { TarefaInterface } from '../schemas/interfaces/tarefa.interface';
 
 export class TarefaService {
 
-    async create(tarefa: Tarefa) {
+    async create(tarefa: TarefaInterface) {
         const createdTarefa = await TarefaModel.create(tarefa);
 
         return createdTarefa;
@@ -75,28 +75,6 @@ export class TarefaService {
         const tarefas = await TarefaModel.find();
         return tarefas.map(tarefa => tarefa.descricao).sort((a, b) => b!.length - a!.length);
     }
-    
-    async groupByCategoria(){
-
-        const tarefas = await TarefaModel.find();
-        const categorias = await CategoriaModel.find(); 
-        const tarefasPorCategoria = tarefas.reduce((acc, tarefa) => {
-            const categoria = categorias.find(
-                categoria => categoria._id.equals(tarefa.categoria));
-            
-        const categoriaNome = categoria!.nome;
-
-        if (!acc[categoriaNome!]) {
-            acc[categoriaNome!] = [];
-        }
-
-        acc[categoriaNome!].push(tarefa);
-
-        return acc;
-    }, {});
-
-    return tarefasPorCategoria;
-    }
 
     async latestTarefa(usuarioId:any){
 
@@ -107,7 +85,7 @@ export class TarefaService {
         
     }
 
-    async updateTarefa(tarefaId: any, updateTarefa: Tarefa) {
+    async updateTarefa(tarefaId: any, updateTarefa: TarefaInterface) {
 
         const tarefa = await TarefaModel.updateOne(tarefaId, updateTarefa);
 

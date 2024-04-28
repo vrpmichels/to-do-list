@@ -15,7 +15,6 @@ tarefaRoutes.get('/status/pendente', tarefaController.findAllPendentes);
 tarefaRoutes.get('/recente/:usuarioId', tarefaController.recentTarefa);
 tarefaRoutes.get('/media', tarefaController.calcularMediaDeTarefasConcluidas);
 tarefaRoutes.get('/descricao/maior', tarefaController.getMaiorDescricao);
-tarefaRoutes.get('/categoria', tarefaController.groupByCategoria);
 tarefaRoutes.get('/ultima/:usuarioId', tarefaController.latestTarefa);
 
 

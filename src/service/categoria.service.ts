@@ -1,9 +1,9 @@
 import CategoriaModel from '../schemas/categoria.schema'
-import { Categoria } from '../schemas/interfaces/categoria.interface';
+import { CategoriaInterface } from '../schemas/interfaces/categoria.interface';
 
 export class CategoriaService {
 
-    async create(categoria: Categoria) {
+    async create(categoria: CategoriaInterface) {
         const createdCategoria = await CategoriaModel.create(categoria);
 
         return createdCategoria;
@@ -21,7 +21,7 @@ export class CategoriaService {
         return categorias;
     }
 
-    async updateCategoria(categoriaId:any, updateCategoria:Categoria){
+    async updateCategoria(categoriaId:any, updateCategoria:CategoriaInterface){
         const categoria = await CategoriaModel.updateOne(categoriaId,updateCategoria)
         return categoria
     }

@@ -75,11 +75,6 @@ export class TarefaController {
         return res.json(tarefas);
     }
 
-    async groupByCategoria(res:Response){
-        
-        const tarefas = await new TarefaService().groupByCategoria();
-        return res.json(tarefas);
-    }
 
     async latestTarefa(req:Request,res:Response){
         
