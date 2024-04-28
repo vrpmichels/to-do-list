@@ -1,20 +1,19 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import { routes } from './routes'
+import router from './src/routes/router'
+import { setupMiddlewares } from './src/middleware/middlewares'
 
 class App {
     public express: express.Application
 
     public constructor() {
         this.express = express()
-        this.middleware()
+        setupMiddlewares(this.express);
         this.database()
         this.routes()
     }
 
-    public middleware(): void {
-        this.express.use(express.json())
-    }
+    
 
     public async database() {
         try {
@@ -27,7 +26,7 @@ class App {
     }
 
     public routes(): void {
-        this.express.use(routes)
+        this.express.use('/api', router)
     }
 }
 

@@ -47,7 +47,6 @@ export class TarefaService {
     async countByUsuario(usuarioId: any) {
 
         const tarefas = await TarefaModel.find();
-        
         return tarefas.filter(tarefa => tarefa.usuarioAssociado === usuarioId).length;
     }
 
@@ -59,7 +58,6 @@ export class TarefaService {
         .sort((a,b)=>new Date(b.data_criacao!).getTime()-new Date(a.data_criacao!).getTime());
 
         const tarefaMaisRecente = tarefas[0];
-
         return tarefaMaisRecente;
     }
 

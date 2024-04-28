@@ -3,8 +3,8 @@ import { Schema, model } from 'mongoose'
 const tarefa = new Schema({
     title: String,
     descricao: String,
-    data_criacao: { type: Date, require: true },
-    data_conclusao: { type: Date, require: true },
+    data_criacao: Date,
+    data_conclusao: Date,
     tipo: String,
     categoria: { type: Schema.Types.ObjectId, ref: 'Categoria' },
     status: { type: String, enum: ['pendente', 'em andamento', 'concluída'] },
