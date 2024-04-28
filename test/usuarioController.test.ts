@@ -15,7 +15,7 @@ describe('testando os endpoints de usuario', () => {
         const collections = Object.keys(mongoose.connection.collections);
         for (const collectionName of collections) {
             const collection = mongoose.connection.collections[collectionName];
-            await collection.deleteMany({}); // remove todos os documentos da coleção
+            await collection.deleteMany({});
         }
     })
 

@@ -17,16 +17,16 @@ export class TarefaService {
 
     async findAllByUsuario(usuarioId: any) {
 
-        const tarefas = await TarefaModel.find({ usuarioAssociado: usuarioId });
+        const tarefas = await TarefaModel.find();
 
-        return tarefas;
+        return tarefas.filter(tarefa => tarefa.usuarioAssociado?.toString() === usuarioId);
     }
 
     async findAllByCategoria(categoria: any) {
 
         const tarefas = await TarefaModel.find();
 
-        return tarefas.filter(tarefa => tarefa.categoria === categoria);
+        return tarefas.filter(tarefa => tarefa.categoria?.toString() === categoria);
 
     }
 
@@ -47,42 +47,42 @@ export class TarefaService {
     async countByUsuario(usuarioId: any) {
 
         const tarefas = await TarefaModel.find();
-        return tarefas.filter(tarefa => tarefa.usuarioAssociado === usuarioId).length;
+        return tarefas.filter(tarefa => tarefa.usuarioAssociado?.toString() === usuarioId).length;
     }
 
-    async recentTarefa(usuarioId: any){
-        
+    async recentTarefa(usuarioId: any) {
+
         const tarefas = await TarefaModel.find();
 
         tarefas.filter(tarefa => tarefa.usuarioAssociado === usuarioId)
-        .sort((a,b)=>new Date(b.data_criacao!).getTime()-new Date(a.data_criacao!).getTime());
+            .sort((a, b) => new Date(b.data_criacao!).getTime() - new Date(a.data_criacao!).getTime());
 
         const tarefaMaisRecente = tarefas[0];
         return tarefaMaisRecente;
     }
 
-    async calcularMediaDeTarefasConlcuidas(){
+    async calcularMediaDeTarefasConlcuidas() {
 
         const tarefas = await TarefaModel.find();
         const totalTarefas = tarefas.length;
-        const tarefasConcluidas = tarefas.filter(tarefas=> tarefas.status === 'concluída').length;
+        const tarefasConcluidas = tarefas.filter(tarefas => tarefas.status === 'concluída').length;
 
-        return (tarefasConcluidas/totalTarefas) * 100;
+        return (tarefasConcluidas / totalTarefas) * 100;
     }
 
-    async getMaiorDescricao(){
-        
+    async getMaiorDescricao() {
+
         const tarefas = await TarefaModel.find();
         return tarefas.map(tarefa => tarefa.descricao).sort((a, b) => b!.length - a!.length);
     }
 
-    async latestTarefa(usuarioId:any){
+    async latestTarefa(usuarioId: any) {
 
         const tarefas = await TarefaModel.find();
-        
-        return tarefas.filter(tarefa => tarefa.usuarioAssociado === usuarioId)
-        .sort((a,b)=>new Date(a.data_criacao!).getTime()-new Date(b.data_criacao!).getTime());
-        
+
+        return tarefas.filter(tarefa => tarefa.usuarioAssociado?.toString() === usuarioId)
+            .sort((a, b) => new Date(a.data_criacao!).getTime() - new Date(b.data_criacao!).getTime());
+
     }
 
     async updateTarefa(tarefaId: any, updateTarefa: TarefaInterface) {

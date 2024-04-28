@@ -14,19 +14,19 @@ export class CategoriaService {
         return findedCategoria;
     }
 
-    async findAllByUsuario(usuarioId:any){
+    async findAllByUsuario(usuarioId: any) {
 
         const categorias = await CategoriaModel.find({ usuarioAssociado: usuarioId });
 
         return categorias;
     }
 
-    async updateCategoria(categoriaId:any, updateCategoria:CategoriaInterface){
-        const categoria = await CategoriaModel.updateOne(categoriaId,updateCategoria)
+    async updateCategoria(categoriaId: any, updateCategoria: CategoriaInterface) {
+        const categoria = await CategoriaModel.updateOne({ _id: categoriaId }, updateCategoria, { new: true })
         return categoria
     }
 
-    async deleteCategoria(categoriaId: any){
+    async deleteCategoria(categoriaId: any) {
         const categoria = await CategoriaModel.deleteOne(categoriaId)
 
         return categoria;
