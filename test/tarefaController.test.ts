@@ -68,7 +68,6 @@ describe('test endpoin tarefa', () => {
         const response3 = await request.default(app).post('/api/tarefa/').send(tarefaMock02);
 
         const getTarefas = await request.default(app).get(`/api/tarefa/usuario/${response1.body._id}`);
-        console.log(getTarefas);
         expect(getTarefas.body[0].title).toEqual(tarefaMock01.title);
         expect(getTarefas.body[1].title).toEqual(tarefaMock02.title);
         expect(getTarefas.body[0].descricao).toEqual(tarefaMock01.descricao);
